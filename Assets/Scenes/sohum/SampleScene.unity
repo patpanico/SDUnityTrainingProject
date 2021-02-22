@@ -3965,7 +3965,7 @@ PrefabInstance:
     - target: {fileID: 3027133206837854547, guid: 2fb4e1c985df347d2a30d8b37da0167a,
         type: 3}
       propertyPath: m_Name
-      value: player
+      value: playerSample
       objectReference: {fileID: 0}
     - target: {fileID: 3027133206837854639, guid: 2fb4e1c985df347d2a30d8b37da0167a,
         type: 3}
@@ -5512,7 +5512,7 @@ PrefabInstance:
     - target: {fileID: 5399211430412761370, guid: c9515e7803ab34557a01ccd6d3aac924,
         type: 3}
       propertyPath: m_Name
-      value: labContainer
+      value: labContainerSample
       objectReference: {fileID: 0}
     - target: {fileID: 5399211430412761374, guid: c9515e7803ab34557a01ccd6d3aac924,
         type: 3}
