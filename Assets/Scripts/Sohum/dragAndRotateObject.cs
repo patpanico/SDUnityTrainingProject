@@ -16,7 +16,10 @@ public class dragAndRotateObject : MonoBehaviour
     // rotate with keys "E" and "Q"
     // rotateOnKeyPress - rotate with keys only if true
     public bool rotateOnKeyPress = true;
+    public KeyCode leftRotateKey = KeyCode.E;
+    public KeyCode rightRotateKey = KeyCode.Q;
 
+    // 
     public bool resetPositionOnMouseUp = true;
     public bool resetRotationOnMouseUp = true;
 
@@ -57,8 +60,8 @@ public class dragAndRotateObject : MonoBehaviour
         go.transform.position = GetMouseAsWorldPoint() + mOffset;
 
         if(rotateOnKeyPress){
-            if(Input.GetKey(KeyCode.Q)) { go.transform.Rotate(-1f, 0, 0); }
-            else if(Input.GetKey(KeyCode.E)) { go.transform.Rotate(1f, 0, 0); }
+            if(Input.GetKey(leftRotateKey)) { go.transform.Rotate(-1f, 0, 0); }
+            else if(Input.GetKey(rightRotateKey)) { go.transform.Rotate(1f, 0, 0); }
         }
     }
 }
