@@ -25,6 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         PauseMenuObj.SetActive(true);
         CrosshairObj.SetActive(false);
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         PauseMenuObj.SetActive(false);
         CrosshairObj.SetActive(true);
@@ -41,9 +43,14 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
-    public void ExitButton()
+    public void MenuButton()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
     }
 }
