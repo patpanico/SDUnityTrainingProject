@@ -6319,7 +6319,7 @@ Transform:
   - {fileID: 6738450967799152224}
   - {fileID: 543450652854913882}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &873200688
 GameObject:
@@ -6797,7 +6797,7 @@ PrefabInstance:
     - target: {fileID: 3734062653103468028, guid: e93982f0811d09942977d40f4fe6c958,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3734062653103468028, guid: e93982f0811d09942977d40f4fe6c958,
         type: 3}
@@ -8892,6 +8892,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flask3
       objectReference: {fileID: 0}
+    - target: {fileID: 4970454065891166713, guid: 82570beaa09fb3b47a98ab63c5fcf42a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82570beaa09fb3b47a98ab63c5fcf42a, type: 3}
 --- !u!33 &5334037120178677409
@@ -9056,6 +9061,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flask4
       objectReference: {fileID: 0}
+    - target: {fileID: 3244916117152416629, guid: 7275b2371ee4168449d911447d5c5b91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7275b2371ee4168449d911447d5c5b91, type: 3}
 --- !u!23 &7762067043002371744
@@ -9108,6 +9118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Distiller Head
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762748674559499806, guid: e93982f0811d09942977d40f4fe6c958,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3734062653103468028, guid: e93982f0811d09942977d40f4fe6c958,
         type: 3}
