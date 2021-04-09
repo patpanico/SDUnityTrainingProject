@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    bool isHolding = false;
+    public bool isHolding = false;
     public Transform ObjectDest;
 
     void Update()
@@ -32,6 +32,12 @@ public class PickUp : MonoBehaviour
         this.transform.parent = GameObject.Find("ObjectDest").transform;
     }
 
+    void HoldingObject()
+    {
+        this.transform.position = ObjectDest.position;
+        this.transform.parent = GameObject.Find("ObjectDest").transform;
+    }
+
     void ReleaseObject()
     {
         isHolding = false;
@@ -48,6 +54,9 @@ public class PickUp : MonoBehaviour
 
     void OnMouseUp()
     {
-        ReleaseObject();
+        if (isHolding == true)
+        {
+            HoldingObject();
+        }
     }
 }
