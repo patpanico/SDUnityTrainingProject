@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUp : MonoBehaviour
 {
     public bool isHolding = false;
     Transform ObjectDest;
+    Text UIText;
+
+    void Start()
+    {
+        ObjectDest = GameObject.Find("ObjectDest").transform;
+        UIText = GameObject.Find("InteractionText").GetComponent<Text>();
+    }
 
     void Update()
     {
         if (isHolding)
             WhileHolding();
-    }
-
-    void Start()
-    {
-        ObjectDest = GameObject.Find("ObjectDest").transform;
     }
 
     void WhileHolding()
@@ -53,7 +56,12 @@ public class PickUp : MonoBehaviour
 
     void OnMouseOver()
     {
-        GameObject textUI = GameObject.Find("InteractionText");
+        UIText.text = "Hold LMB to Pick Up";
+    }
+
+    void OnMouseExit()
+    {
+        UIText.text = "";
     }
 
     void OnMouseDown()
