@@ -8,6 +8,7 @@ public class PickUp : MonoBehaviour
     public bool isHolding = false;
     Transform ObjectDest;
     Text UIText;
+    float maxDistance = 2.5f;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class PickUp : MonoBehaviour
 
     void WhileHolding()
     {
-        if (Vector3.Distance(this.transform.position, ObjectDest.transform.position) > 2.5f)
+        if (GetDistance() > maxDistance)
             ReleaseObject();
         else {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -56,23 +57,32 @@ public class PickUp : MonoBehaviour
 
     void OnMouseOver()
     {
-        UIText.text = "Hold LMB to Pick Up";
+        if (!isHolding && GetDistance() <= maxDistance)
+            UIText.text = "Hold LMB to Pick Up";
     }
 
     void OnMouseExit()
     {
-        UIText.text = "";
+        if (!isHolding && GetDistance() <= maxDistance)
+            UIText.text = "";
     }
 
     void OnMouseDown()
     {
-        if (Vector3.Distance(this.transform.position, ObjectDest.transform.position) <= 2.5f)
+        if (GetDistance() <= maxDistance) {
+            UIText.text = "";
             PickUpObject();
+        }
     }
 
     void OnMouseUp()
     {
         if (isHolding == true)
             ReleaseObject();
+    }
+
+    float GetDistance()
+    {
+        return Vector3.Distance(this.transform.position, ObjectDest.transform.position);
     }
 }
