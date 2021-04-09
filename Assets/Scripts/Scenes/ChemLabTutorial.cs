@@ -53,7 +53,8 @@ public class ChemLabTutorial : MonoBehaviour
             }
             else
             {
-                step++;
+                if (step == 5)
+                    step++;
                 TutorialText.text = "Turn off the heat source now that it is at 100 degress fahrenheit...\n\n(Warning: Running mixture under heat for too long (until dry) could create a safety hazard)";
 
                 levelDistiller.transform.Find("Flask4").gameObject.transform.Find("3").gameObject.SetActive(false);
@@ -99,6 +100,11 @@ public class ChemLabTutorial : MonoBehaviour
     public bool IsHeatReady()
     {
         return (step == 5);
+    }
+
+    public bool IsHeatReadyToOff()
+    {
+        return (step == 6);
     }
 
     public void TurnOnHeat()

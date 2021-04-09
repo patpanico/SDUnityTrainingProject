@@ -33,7 +33,7 @@ public class HeatSource : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (isOn)
+        if (isOn && levelScript.IsHeatReadyToOff())
             TurnOff();
         else if (!isOn && levelScript.IsHeatReady())
             TurnOn();
