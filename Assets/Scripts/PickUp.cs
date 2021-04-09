@@ -55,6 +55,6 @@ public class PickUp : MonoBehaviour
     void OnMouseUp()
     {
         if (isHolding == true)
-            HoldingObject();
+            ReleaseObject();
     }
 }
