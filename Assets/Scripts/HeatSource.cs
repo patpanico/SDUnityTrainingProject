@@ -5,50 +5,39 @@ using UnityEngine.UI;
 
 public class HeatSource : MonoBehaviour
 {
-    public bool isHolding = false;
-    public Color[] colors = new Color[] {Color.white, Color.red};
-    Transform ObjectDest;
-    //Text UIText;
-    Vector3 buttonShift = new Vector3(0f, 0f, 0.02f);
-    bool isOn = false;
+    public GameObject levelScriptObj;
+    ChemLabTutorial levelScript;
+    Vector3 buttonShift = new Vector3(0f, 0f, 0.01f);
+    bool isOn;
 
     void Start()
     {
-        ObjectDest = GameObject.Find("ObjectDest").transform;
-        //UIText = GameObject.Find("InteractionText").GetComponent<Text>();
+        levelScript = levelScriptObj.GetComponent<ChemLabTutorial>();
     }
 
-    void Update()
+    void TurnOn()
     {
-
+        isOn = true;
+        this.transform.position += buttonShift;
+        GetComponent<Renderer>().material.color = Color.red;
+        levelScript.TurnOnHeat();
     }
 
-    /*
-    void OnMouseOver()
+    void TurnOff()
     {
-        UIText.text = "Click LMB to Turn Heat Source On/Off";
+        isOn = false;
+        this.transform.position -= buttonShift;
+        GetComponent<Renderer>().material.color = Color.black;
+        levelScript.TurnOffHeat();
     }
-
-    void OnMouseExit()
-    {
-        UIText.text = "";
-    }
-    */
 
     void OnMouseDown()
     {
-        if (isOn == true)
-        {
-            this.transform.position -= buttonShift;
-            GetComponent<Renderer>().material.color = colors[0];
-            isOn = false;
-        }
-        else
-        {
-            this.transform.position += buttonShift;
-            GetComponent<Renderer>().material.color = colors[1];
-            isOn = true;
-        }
+        if (isOn && levelScript.IsHeatReadyToOff())
+            TurnOff();
+        else if (!isOn && levelScript.IsHeatReady())
+            TurnOn();
     }
+
 
 }

@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class ChemLabTutorial : MonoBehaviour
 {
-    Text TutorialText;
     public GameObject levelDistiller;
+    public GameObject LabCompletedUI;
+    Text TutorialText;
     int step = 0;
+    bool isHeatOn;
+    float heatTimer = 10;
+    int heatStage = 0;
 
     void Start()
     {
@@ -19,6 +23,48 @@ public class ChemLabTutorial : MonoBehaviour
         if (Input.GetKeyDown("space") && step == 0) {
             step++;
             TutorialText.text = "Begin by putting the mixture in the wide flask onto the stand directly above the heating source...";
+        }
+        
+        if (isHeatOn) {
+            if (heatTimer > 0) {
+                heatTimer -= Time.deltaTime;
+                if (heatTimer < 6.66 && heatStage == 0) {
+                    heatStage++;
+
+                    levelDistiller.transform.Find("Flask4").gameObject.transform.Find("1").gameObject.SetActive(false);
+                    levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("1").gameObject.SetActive(false);
+
+                    levelDistiller.transform.Find("Flask4").gameObject.transform.Find("2").gameObject.SetActive(true);
+                    levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("2").gameObject.SetActive(true);
+                    levelDistiller.transform.Find("Flask3").gameObject.transform.Find("1").gameObject.SetActive(true);
+                }
+                else if (heatTimer < 3.33 && heatStage == 1)
+                {
+                    heatStage++;
+
+                    levelDistiller.transform.Find("Flask4").gameObject.transform.Find("2").gameObject.SetActive(false);
+                    levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("2").gameObject.SetActive(false);
+                    levelDistiller.transform.Find("Flask3").gameObject.transform.Find("1").gameObject.SetActive(false);
+
+                    levelDistiller.transform.Find("Flask4").gameObject.transform.Find("3").gameObject.SetActive(true);
+                    levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("3").gameObject.SetActive(true);
+                    levelDistiller.transform.Find("Flask3").gameObject.transform.Find("2").gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                if (step == 5)
+                    step++;
+                TutorialText.text = "Turn off the heat source now that it is at 100 degress fahrenheit...\n\n(Warning: Running mixture under heat for too long (until dry) could create a safety hazard)";
+
+                levelDistiller.transform.Find("Flask4").gameObject.transform.Find("3").gameObject.SetActive(false);
+                levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("3").gameObject.SetActive(false);
+                levelDistiller.transform.Find("Flask3").gameObject.transform.Find("2").gameObject.SetActive(false);
+
+                levelDistiller.transform.Find("Flask4").gameObject.transform.Find("4").gameObject.SetActive(true);
+                levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("4").gameObject.SetActive(true);
+                levelDistiller.transform.Find("Flask3").gameObject.transform.Find("3").gameObject.SetActive(true);
+            }
         }
     }
 
@@ -33,7 +79,7 @@ public class ChemLabTutorial : MonoBehaviour
     {
         if (obj.name == "Flask4" && step == 1) {
             ActivateDestroyStepUp(obj);
-            TutorialText.text = "Connect the distilling head to the tip of the wide flask, making sure the connecting is air-tight...";
+            TutorialText.text = "Connect the distilling head to the tip of the wide flask, making sure the connection is air-tight...";
         }
         else if (obj.name == "Distiller Head" && step == 2) {
             ActivateDestroyStepUp(obj);
@@ -41,7 +87,7 @@ public class ChemLabTutorial : MonoBehaviour
         }
         else if (obj.name == "Flask3" && step == 3) {
             ActivateDestroyStepUp(obj);
-            TutorialText.text = "Put the thermometer in the top-end of the distilling head, making sure the connecting is air-tight...";
+            TutorialText.text = "Put the thermometer in the top-end of the distilling head, making sure the connection is air-tight...";
         }
         else if (obj.name == "Thermometer" && step == 4)
         {
@@ -49,5 +95,30 @@ public class ChemLabTutorial : MonoBehaviour
             levelDistiller.transform.Find("Rubber Connector").gameObject.SetActive(true);
             TutorialText.text = "Turn on the heat source and wait for the mixture to seperate into the graduated cylinder...";
         }
+    }
+
+    public bool IsHeatReady()
+    {
+        return (step == 5);
+    }
+
+    public bool IsHeatReadyToOff()
+    {
+        return (step == 6);
+    }
+
+    public void TurnOnHeat()
+    {
+        isHeatOn = true;
+        GameObject.Find("DripSystem").GetComponent<ParticleSystem>().enableEmission = true;
+    }
+
+    public void TurnOffHeat()
+    {
+        isHeatOn = false;
+        GameObject.Find("DripSystem").GetComponent<ParticleSystem>().enableEmission = false;
+
+        TutorialText.text = "";
+        LabCompletedUI.GetComponent<LabCompleted>().Completed();
     }
 }
