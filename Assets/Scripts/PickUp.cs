@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PickUp : MonoBehaviour
 {
-    public bool isHolding = false;
+    public bool isHolding;
     Transform ObjectDest;
     Text UIText;
     float maxDistance = 2.5f;
