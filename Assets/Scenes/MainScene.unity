@@ -8930,6 +8930,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flask3
       objectReference: {fileID: 0}
+    - target: {fileID: 3322412285878960182, guid: 82570beaa09fb3b47a98ab63c5fcf42a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82570beaa09fb3b47a98ab63c5fcf42a, type: 3}
 --- !u!33 &3010172806613828449
@@ -9036,7 +9041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4083501150584321308
 Transform:
   m_ObjectHideFlags: 0
@@ -9201,6 +9206,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flask4
       objectReference: {fileID: 0}
+    - target: {fileID: 4563535335695333233, guid: 7275b2371ee4168449d911447d5c5b91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7275b2371ee4168449d911447d5c5b91, type: 3}
 --- !u!4 &6645823805420041856
@@ -9289,6 +9299,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Thermometer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853263382585807641, guid: f155f407f19d87a489f769832d9f5f43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f155f407f19d87a489f769832d9f5f43, type: 3}
@@ -9391,7 +9406,7 @@ PrefabInstance:
     - target: {fileID: 1762748674559499806, guid: e93982f0811d09942977d40f4fe6c958,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3734062653103468028, guid: e93982f0811d09942977d40f4fe6c958,
         type: 3}
