@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,14 +10,16 @@ public class PickUp : MonoBehaviour
     void Update()
     {
         if (isHolding)
-        {
-            float distance = Vector3.Distance(this.transform.position, ObjectDest.transform.position);
-            if (distance > 2.5f)
-                ReleaseObject();
-            else {
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-                GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            }
+            WhileHolding();
+    }
+
+    void WhileHolding()
+    {
+        if (Vector3.Distance(this.transform.position, ObjectDest.transform.position) > 2.5f)
+            ReleaseObject();
+        else {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
     }
 
@@ -46,18 +48,8 @@ public class PickUp : MonoBehaviour
 
     void OnMouseDown()
     {
-        float distance = Vector3.Distance(this.transform.position, ObjectDest.transform.position);
-        if (isHolding == false)
-        {
-            if (distance <= 2.5f)
-            {
-                PickUpObject();
-            }
-        }
-        else if (isHolding == true)
-        {
-            ReleaseObject();
-        }
+        if (Vector3.Distance(this.transform.position, ObjectDest.transform.position) <= 2.5f)
+            PickUpObject();
     }
 
     void OnMouseUp()
