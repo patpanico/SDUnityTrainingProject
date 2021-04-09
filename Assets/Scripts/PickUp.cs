@@ -5,12 +5,17 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     public bool isHolding = false;
-    public Transform ObjectDest;
+    Transform ObjectDest;
 
     void Update()
     {
         if (isHolding)
             WhileHolding();
+    }
+
+    void Start()
+    {
+        ObjectDest = GameObject.Find("ObjectDest").transform;
     }
 
     void WhileHolding()
@@ -44,6 +49,11 @@ public class PickUp : MonoBehaviour
         this.transform.parent = null;
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().freezeRotation = false;
+    }
+
+    void OnMouseOver()
+    {
+        GameObject textUI = GameObject.Find("InteractionText");
     }
 
     void OnMouseDown()
