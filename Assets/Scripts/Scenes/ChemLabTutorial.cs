@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,12 +20,12 @@ public class ChemLabTutorial : MonoBehaviour
     void Start()
     {
         TutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
-        PopupUI.GetComponent<TutorialPopup>().OpenPopup("Welcome to the\nChemistry Tutorial Lab!");
+        PopupUI.GetComponent<TutorialPopup>().OpenPopup("Welcome to the\nChemistry Lab Tutorial!");
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("space")) {
+        if (Input.GetKeyDown("space"))
             if (step == 0) {
                 step++;
                 PopupUI.GetComponent<TutorialPopup>().OpenPopup("In this tutorial you will learn how to separate a mixture of two liquids via distillation, or by using heat. Distillation takes advantage of the fact that different liquids have different boiling points.");
@@ -43,14 +43,16 @@ public class ChemLabTutorial : MonoBehaviour
                 step++;
                 TutorialText.text = "Begin by putting the mixture in the wide flask onto the stand directly above the heating source.";
             }
-        }
-
-        if (isHeatOn) {
-            if (heatTimer > 0)
+            else if (step == 8)
             {
+                PopupUI.GetComponent<TutorialPopup>().ClosePopup();
+                step++;
+                TutorialText.text = "Turn off the heat source...";
+            }
+        if (isHeatOn)
+            if (heatTimer > 0) {
                 heatTimer -= Time.deltaTime;
-                if (heatTimer <= 6.66 && heatStage == 0)
-                {
+                if (heatTimer <= 6.66 && heatStage == 0) {
                     heatStage++;
 
                     levelDistiller.transform.Find("Flask4").gameObject.transform.Find("1").gameObject.SetActive(false);
@@ -60,8 +62,7 @@ public class ChemLabTutorial : MonoBehaviour
                     levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("2").gameObject.SetActive(true);
                     levelDistiller.transform.Find("Flask3").gameObject.transform.Find("1").gameObject.SetActive(true);
                 }
-                else if (heatTimer <= 3.33 && heatStage == 1)
-                {
+                else if (heatTimer <= 3.33 && heatStage == 1) {
                     heatStage++;
 
                     levelDistiller.transform.Find("Flask4").gameObject.transform.Find("2").gameObject.SetActive(false);
@@ -73,10 +74,8 @@ public class ChemLabTutorial : MonoBehaviour
                     levelDistiller.transform.Find("Flask3").gameObject.transform.Find("2").gameObject.SetActive(true);
                 }
             }
-            else if (step == 8)
-            {
+            else if (step == 7) {
                 step++;
-                TutorialText.text = "Turn off the heat source now that the vapor is at 111 degrees Celsius.\n\n(Warning: Running mixture under heat for too long, i.e. until dry, could result in the accumulation of explosive substances)";
                 GameObject.Find("DripSystem").GetComponent<ParticleSystem>().enableEmission = false;
 
                 levelDistiller.transform.Find("Flask4").gameObject.transform.Find("3").gameObject.SetActive(false);
@@ -85,13 +84,20 @@ public class ChemLabTutorial : MonoBehaviour
 
                 levelDistiller.transform.Find("Flask4").gameObject.transform.Find("4").gameObject.SetActive(true);
                 levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("4").gameObject.SetActive(true);
-                levelDistiller.transform.Find("Flask3").gameObject.transform.Find("3").gameObject.SetActive(true);
+                levelDistiller.transform.Find("Flask3").gameObject.transform.Find("4").gameObject.SetActive(true);
+
+                TutorialText.text = "";
+                PopupUI.GetComponent<TutorialPopup>().OpenPopup("Turn off the heat source now that the vapor is at 111 degrees Celsius.\nWarning: Running mixture under heat for too long, i.e. until dry, could result in the accumulation of explosive substances.");
             }
             else if (step == 9) {
                 failTimer -= Time.deltaTime;
                 if (failTimer <= 2.5 && failStage == 0) {
                     failStage++;
+                    GameObject.Find("GasSystem").GetComponent<ParticleSystem>().enableEmission = true;
+                    levelDistiller.transform.Find("Flask4").gameObject.transform.Find("4").gameObject.SetActive(false);
                     levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("4").gameObject.SetActive(false);
+
+                    levelDistiller.transform.Find("Flask4").gameObject.transform.Find("5").gameObject.SetActive(true);
                     levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("5").gameObject.SetActive(true);
                 }
                 else if (failTimer <= 0) {
@@ -102,7 +108,6 @@ public class ChemLabTutorial : MonoBehaviour
                     LabFailedUI.GetComponent<LabFailed>().Failed();
                 }
             }
-        }
     }
 
     void ActivateDestroyStepUp(GameObject obj)
