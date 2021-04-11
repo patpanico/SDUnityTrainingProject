@@ -7729,7 +7729,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 756813470}
+      - m_Target: {fileID: 1397674618}
         m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
@@ -7889,7 +7889,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 756813470}
+      - m_Target: {fileID: 1722941970}
         m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
@@ -8444,7 +8444,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 756813470}
+      - m_Target: {fileID: 1722941970}
         m_MethodName: MenuButton
         m_Mode: 1
         m_Arguments:
@@ -10156,7 +10156,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 756813470}
+      - m_Target: {fileID: 1397674618}
         m_MethodName: MenuButton
         m_Mode: 1
         m_Arguments:

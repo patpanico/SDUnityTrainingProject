@@ -7,6 +7,7 @@ public class TutorialPopup : MonoBehaviour
 {
     public GameObject CrosshairObj;
     Text PopupText;
+    public static bool isPopup;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class TutorialPopup : MonoBehaviour
 
     public void OpenPopup(string text)
     {
+        isPopup = true;
         PopupText.text = text;
         this.gameObject.SetActive(true);
         Cursor.visible = true;
@@ -25,6 +27,7 @@ public class TutorialPopup : MonoBehaviour
 
     public void ClosePopup()
     {
+        isPopup = false;
         this.gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

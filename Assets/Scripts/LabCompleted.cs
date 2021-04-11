@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LabCompleted : MonoBehaviour
 {
@@ -15,5 +16,17 @@ public class LabCompleted : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         CrosshairObj.SetActive(false);
         Time.timeScale = 0f;
+    }
+
+    public void MenuButton()
+    {
+        isCompleted = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
     }
 }

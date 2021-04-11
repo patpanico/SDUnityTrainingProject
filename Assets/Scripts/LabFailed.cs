@@ -20,6 +20,20 @@ public class LabFailed : MonoBehaviour
 
     public void RetryButton()
     {
+        isFailed = false;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("ChemLabTutorial");
+    }
+
+    public void MenuButton()
+    {
+        isFailed = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
     }
 }

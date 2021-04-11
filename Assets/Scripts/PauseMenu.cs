@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !(LabCompleted.isCompleted || LabFailed.isFailed))
             if (isPaused)
                 ResumeGame();
             else
@@ -35,16 +35,20 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        PauseMenuObj.SetActive(false);
-        CrosshairObj.SetActive(true);
-        Time.timeScale = 1f;
         isPaused = false;
+        PauseMenuObj.SetActive(false);
+        if (!TutorialPopup.isPopup) {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            CrosshairObj.SetActive(true);
+            Time.timeScale = 1f;
+        }
     }
 
     public void MenuButton()
     {
+        isPaused = false;
+        TutorialPopup.isPopup = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
