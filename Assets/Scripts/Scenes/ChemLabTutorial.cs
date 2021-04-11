@@ -25,7 +25,7 @@ public class ChemLabTutorial : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("space")) {
+        if (Input.GetKeyDown("space"))
             if (step == 0) {
                 step++;
                 PopupUI.GetComponent<TutorialPopup>().OpenPopup("In this tutorial you will learn how\nto separate a mixture of two\nliquids using distillation.");
@@ -45,14 +45,10 @@ public class ChemLabTutorial : MonoBehaviour
                 step++;
                 TutorialText.text = "Turn off the heat source...";
             }
-        }
-
-        if (isHeatOn) {
-            if (heatTimer > 0)
-            {
+        else if (isHeatOn)
+            if (heatTimer > 0) {
                 heatTimer -= Time.deltaTime;
-                if (heatTimer <= 6.66 && heatStage == 0)
-                {
+                if (heatTimer <= 6.66 && heatStage == 0) {
                     heatStage++;
 
                     levelDistiller.transform.Find("Flask4").gameObject.transform.Find("1").gameObject.SetActive(false);
@@ -62,8 +58,7 @@ public class ChemLabTutorial : MonoBehaviour
                     levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("2").gameObject.SetActive(true);
                     levelDistiller.transform.Find("Flask3").gameObject.transform.Find("1").gameObject.SetActive(true);
                 }
-                else if (heatTimer <= 3.33 && heatStage == 1)
-                {
+                else if (heatTimer <= 3.33 && heatStage == 1) {
                     heatStage++;
 
                     levelDistiller.transform.Find("Flask4").gameObject.transform.Find("2").gameObject.SetActive(false);
@@ -75,8 +70,7 @@ public class ChemLabTutorial : MonoBehaviour
                     levelDistiller.transform.Find("Flask3").gameObject.transform.Find("2").gameObject.SetActive(true);
                 }
             }
-            else if (step == 7)
-            {
+            else if (step == 7) {
                 step++;
                 GameObject.Find("DripSystem").GetComponent<ParticleSystem>().enableEmission = false;
 
@@ -110,7 +104,6 @@ public class ChemLabTutorial : MonoBehaviour
                     LabFailedUI.GetComponent<LabFailed>().Failed();
                 }
             }
-        }
     }
 
     void ActivateDestroyStepUp(GameObject obj)
