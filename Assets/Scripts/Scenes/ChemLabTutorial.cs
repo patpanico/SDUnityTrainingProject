@@ -7,12 +7,15 @@ public class ChemLabTutorial : MonoBehaviour
 {
     public GameObject levelDistiller;
     public GameObject LabCompletedUI;
+    public GameObject LabFailedUI;
     public GameObject PopupUI;
     Text TutorialText;
     int step = 0;
     bool isHeatOn;
     float heatTimer = 10;
     int heatStage = 0;
+    float failTimer = 5;
+    int failStage = 0;
 
     void Start()
     {
@@ -39,9 +42,11 @@ public class ChemLabTutorial : MonoBehaviour
         }
         
         if (isHeatOn) {
-            if (heatTimer > 0) {
+            if (heatTimer > 0)
+            {
                 heatTimer -= Time.deltaTime;
-                if (heatTimer < 6.66 && heatStage == 0) {
+                if (heatTimer <= 6.66 && heatStage == 0)
+                {
                     heatStage++;
 
                     levelDistiller.transform.Find("Flask4").gameObject.transform.Find("1").gameObject.SetActive(false);
@@ -51,7 +56,7 @@ public class ChemLabTutorial : MonoBehaviour
                     levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("2").gameObject.SetActive(true);
                     levelDistiller.transform.Find("Flask3").gameObject.transform.Find("1").gameObject.SetActive(true);
                 }
-                else if (heatTimer < 3.33 && heatStage == 1)
+                else if (heatTimer <= 3.33 && heatStage == 1)
                 {
                     heatStage++;
 
@@ -64,11 +69,11 @@ public class ChemLabTutorial : MonoBehaviour
                     levelDistiller.transform.Find("Flask3").gameObject.transform.Find("2").gameObject.SetActive(true);
                 }
             }
-            else
+            else if (step == 7)
             {
-                if (step == 7)
-                    step++;
+                step++;
                 TutorialText.text = "Turn off the heat source now that it is at 100 degress fahrenheit...\n\n(Warning: Running mixture under heat for too long (until dry) could create a safety hazard)";
+                GameObject.Find("DripSystem").GetComponent<ParticleSystem>().enableEmission = false;
 
                 levelDistiller.transform.Find("Flask4").gameObject.transform.Find("3").gameObject.SetActive(false);
                 levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("3").gameObject.SetActive(false);
@@ -77,6 +82,21 @@ public class ChemLabTutorial : MonoBehaviour
                 levelDistiller.transform.Find("Flask4").gameObject.transform.Find("4").gameObject.SetActive(true);
                 levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("4").gameObject.SetActive(true);
                 levelDistiller.transform.Find("Flask3").gameObject.transform.Find("3").gameObject.SetActive(true);
+            }
+            else if (step == 8) {
+                failTimer -= Time.deltaTime;
+                if (failTimer <= 2.5 && failStage == 0) {
+                    failStage++;
+                    levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("4").gameObject.SetActive(false);
+                    levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("5").gameObject.SetActive(true);
+                }
+                else if (failTimer <= 0) {
+                    step++;
+                    levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("5").gameObject.SetActive(false);
+                    levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("6").gameObject.SetActive(true);
+                    TutorialText.text = "";
+                    LabFailedUI.GetComponent<LabFailed>().Failed();
+                }
             }
         }
     }
@@ -129,7 +149,6 @@ public class ChemLabTutorial : MonoBehaviour
     public void TurnOffHeat()
     {
         isHeatOn = false;
-        GameObject.Find("DripSystem").GetComponent<ParticleSystem>().enableEmission = false;
 
         TutorialText.text = "";
         LabCompletedUI.GetComponent<LabCompleted>().Completed();
