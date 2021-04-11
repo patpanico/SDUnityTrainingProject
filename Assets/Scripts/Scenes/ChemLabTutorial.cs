@@ -28,16 +28,20 @@ public class ChemLabTutorial : MonoBehaviour
         if (Input.GetKeyDown("space")) {
             if (step == 0) {
                 step++;
-                PopupUI.GetComponent<TutorialPopup>().OpenPopup("In this tutorial you will learn how\nto separate a mixture of two\nliquids using distillation.");
+                PopupUI.GetComponent<TutorialPopup>().OpenPopup("In this tutorial you will learn how to separate a mixture of two liquids via distillation, or by using heat. Distillation takes advantage of the fact that different liquids have different boiling points.");
             }
             else if (step == 1) {
                 step++;
-                PopupUI.GetComponent<TutorialPopup>().OpenPopup("The wide flask contains the mixture...");
+                PopupUI.GetComponent<TutorialPopup>().OpenPopup("When a liquid changes phase to a gas, it will leave the flask. But as long as it stays a liquid, it will stay in the flask. So if a temperature is maintained where one substance in the mixture will boil but the other will not, then the mixture will become separated.");
             }
             else if (step == 2) {
+                step++;
+                PopupUI.GetComponent<TutorialPopup>().OpenPopup("In this tutorial, you will start with a Cyclohexane-Toluene mixture already contained in a round bottomed flask. The substances are colored for clarity, and are not necessarily realistic.");
+            }
+            else if (step == 3) {
                 PopupUI.GetComponent<TutorialPopup>().ClosePopup();
                 step++;
-                TutorialText.text = "Begin by putting the mixture in the wide flask onto the stand directly above the heating source...";
+                TutorialText.text = "Begin by putting the mixture in the wide flask onto the stand directly above the heating source.";
             }
         }
 
@@ -69,10 +73,10 @@ public class ChemLabTutorial : MonoBehaviour
                     levelDistiller.transform.Find("Flask3").gameObject.transform.Find("2").gameObject.SetActive(true);
                 }
             }
-            else if (step == 7)
+            else if (step == 8)
             {
                 step++;
-                TutorialText.text = "Turn off the heat source now that it is at 100 degress fahrenheit...\n\n(Warning: Running mixture under heat for too long (until dry) could create a safety hazard)";
+                TutorialText.text = "Turn off the heat source now that the vapor is at 111 degrees Celsius.\n\n(Warning: Running mixture under heat for too long, i.e. until dry, could result in the accumulation of explosive substances)";
                 GameObject.Find("DripSystem").GetComponent<ParticleSystem>().enableEmission = false;
 
                 levelDistiller.transform.Find("Flask4").gameObject.transform.Find("3").gameObject.SetActive(false);
@@ -83,7 +87,7 @@ public class ChemLabTutorial : MonoBehaviour
                 levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("4").gameObject.SetActive(true);
                 levelDistiller.transform.Find("Flask3").gameObject.transform.Find("3").gameObject.SetActive(true);
             }
-            else if (step == 8) {
+            else if (step == 9) {
                 failTimer -= Time.deltaTime;
                 if (failTimer <= 2.5 && failStage == 0) {
                     failStage++;
@@ -110,34 +114,34 @@ public class ChemLabTutorial : MonoBehaviour
 
     public void CheckObject(GameObject obj)
     {
-        if (obj.name == "Flask4" && step == 3) {
+        if (obj.name == "Flask4" && step == 4) {
             ActivateDestroyStepUp(obj);
-            TutorialText.text = "Connect the distilling head to the tip of the wide flask, making sure the connection is air-tight...";
+            TutorialText.text = "The distilling head is an apparatus which boiled vapors will pass through, condense when far enough away from the heat source, and then drip through the slanted end. Connect the distilling head to the tip of the wide flask, making sure the connection is air-tight so no vapor escapes.";
         }
-        else if (obj.name == "Distiller Head" && step == 4) {
+        else if (obj.name == "Distiller Head" && step == 5) {
             ActivateDestroyStepUp(obj);
-            TutorialText.text = "Place the empty graduated cylinder under the distilling head...";
+            TutorialText.text = "As the vapor condenses and drips out of the distilling head, we will use a graduated cyllinder to collect the liquid. Now place the empty graduated cylinder under the distilling head.";
         }
-        else if (obj.name == "Flask3" && step == 5) {
+        else if (obj.name == "Flask3" && step == 6) {
             ActivateDestroyStepUp(obj);
-            TutorialText.text = "Put the thermometer in the top-end of the distilling head, making sure the connection is air-tight...";
+            TutorialText.text = "Now put the thermometer in the top-end of the distilling head, making sure the connection is air-tight so no vapor escapes. We will use the thermometer to gauge when our system is no longer at a temperature strictly between the two boiling points.";
         }
-        else if (obj.name == "Thermometer" && step == 6)
+        else if (obj.name == "Thermometer" && step == 7)
         {
             ActivateDestroyStepUp(obj);
             levelDistiller.transform.Find("Rubber Connector").gameObject.SetActive(true);
-            TutorialText.text = "Turn on the heat source and wait for the mixture to seperate into the graduated cylinder...";
+            TutorialText.text = "Turn on the heat source and wait for the mixture to seperate into the graduated cylinder. Cyclohexane's boiling point is 81 degrees Celsius whereas Toluene's boiling point is 111 degrees Celsius, so as long as the system stays comfortably between 81 and 111 Celsius, Cyclohexane will boil and Toluene will not.";
         }
     }
 
     public bool IsHeatReady()
     {
-        return (step == 7);
+        return (step == 8);
     }
 
     public bool IsHeatReadyToOff()
     {
-        return (step == 8);
+        return (step == 9);
     }
 
     public void TurnOnHeat()
