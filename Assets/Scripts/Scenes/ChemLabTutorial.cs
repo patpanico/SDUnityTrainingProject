@@ -7,6 +7,7 @@ public class ChemLabTutorial : MonoBehaviour
 {
     public GameObject levelDistiller;
     public GameObject LabCompletedUI;
+    public GameObject PopupUI;
     Text TutorialText;
     int step = 0;
     bool isHeatOn;
@@ -16,13 +17,25 @@ public class ChemLabTutorial : MonoBehaviour
     void Start()
     {
         TutorialText = GameObject.Find("TutorialText").GetComponent<Text>();
+        PopupUI.GetComponent<TutorialPopup>().OpenPopup("Welcome to the\nChemistry Tutorial Lab!");
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("space") && step == 0) {
-            step++;
-            TutorialText.text = "Begin by putting the mixture in the wide flask onto the stand directly above the heating source...";
+        if (Input.GetKeyDown("space")) {
+            if (step == 0) {
+                step++;
+                PopupUI.GetComponent<TutorialPopup>().OpenPopup("In this tutorial you will learn how to...");
+            }
+            else if (step == 1) {
+                step++;
+                PopupUI.GetComponent<TutorialPopup>().OpenPopup("The wide flask contains the mixture...");
+            }
+            else if (step == 2) {
+                PopupUI.GetComponent<TutorialPopup>().ClosePopup();
+                step++;
+                TutorialText.text = "Begin by putting the mixture in the wide flask onto the stand directly above the heating source...";
+            }
         }
         
         if (isHeatOn) {
@@ -53,7 +66,7 @@ public class ChemLabTutorial : MonoBehaviour
             }
             else
             {
-                if (step == 5)
+                if (step == 7)
                     step++;
                 TutorialText.text = "Turn off the heat source now that it is at 100 degress fahrenheit...\n\n(Warning: Running mixture under heat for too long (until dry) could create a safety hazard)";
 
@@ -77,19 +90,19 @@ public class ChemLabTutorial : MonoBehaviour
 
     public void CheckObject(GameObject obj)
     {
-        if (obj.name == "Flask4" && step == 1) {
+        if (obj.name == "Flask4" && step == 3) {
             ActivateDestroyStepUp(obj);
             TutorialText.text = "Connect the distilling head to the tip of the wide flask, making sure the connection is air-tight...";
         }
-        else if (obj.name == "Distiller Head" && step == 2) {
+        else if (obj.name == "Distiller Head" && step == 4) {
             ActivateDestroyStepUp(obj);
             TutorialText.text = "Place the empty graduated cylinder under the distilling head...";
         }
-        else if (obj.name == "Flask3" && step == 3) {
+        else if (obj.name == "Flask3" && step == 5) {
             ActivateDestroyStepUp(obj);
             TutorialText.text = "Put the thermometer in the top-end of the distilling head, making sure the connection is air-tight...";
         }
-        else if (obj.name == "Thermometer" && step == 4)
+        else if (obj.name == "Thermometer" && step == 6)
         {
             ActivateDestroyStepUp(obj);
             levelDistiller.transform.Find("Rubber Connector").gameObject.SetActive(true);
@@ -99,12 +112,12 @@ public class ChemLabTutorial : MonoBehaviour
 
     public bool IsHeatReady()
     {
-        return (step == 5);
+        return (step == 7);
     }
 
     public bool IsHeatReadyToOff()
     {
-        return (step == 6);
+        return (step == 8);
     }
 
     public void TurnOnHeat()

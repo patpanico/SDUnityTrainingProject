@@ -23,7 +23,7 @@ public class TutorialPopup : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void ClosePop()
+    public void ClosePopup()
     {
         this.gameObject.SetActive(false);
         Cursor.visible = false;
