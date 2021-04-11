@@ -83,7 +83,7 @@ public class ChemLabTutorial : MonoBehaviour
                 levelDistiller.transform.Find("Flask3").gameObject.transform.Find("4").gameObject.SetActive(true);
 
                 TutorialText.text = "";
-                PopupUI.GetComponent<TutorialPopup>().OpenPopup("Turn off the heat source now that it is at 100 degress fahrenheit...\n\n(Warning: Running mixture under heat for too long (until dry) could create a safety hazard)");
+                PopupUI.GetComponent<TutorialPopup>().OpenPopup("Turn off the heat source now that it is at 100 degress fahrenheit.\nWarning: Running mixture under heat for too long could create a safety hazard.");
             }
             else if (step == 9) {
                 failTimer -= Time.deltaTime;
