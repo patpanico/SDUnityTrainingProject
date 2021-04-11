@@ -87,6 +87,7 @@ public class ChemLabTutorial : MonoBehaviour
                 failTimer -= Time.deltaTime;
                 if (failTimer <= 2.5 && failStage == 0) {
                     failStage++;
+                    GameObject.Find("GasSystem").GetComponent<ParticleSystem>().enableEmission = true;
                     levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("4").gameObject.SetActive(false);
                     levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("5").gameObject.SetActive(true);
                 }
