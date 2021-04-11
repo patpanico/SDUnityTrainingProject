@@ -45,7 +45,7 @@ public class ChemLabTutorial : MonoBehaviour
                 step++;
                 TutorialText.text = "Turn off the heat source...";
             }
-        else if (isHeatOn)
+        if (isHeatOn)
             if (heatTimer > 0) {
                 heatTimer -= Time.deltaTime;
                 if (heatTimer <= 6.66 && heatStage == 0) {
@@ -80,7 +80,7 @@ public class ChemLabTutorial : MonoBehaviour
 
                 levelDistiller.transform.Find("Flask4").gameObject.transform.Find("4").gameObject.SetActive(true);
                 levelDistiller.transform.Find("Thermometer").gameObject.transform.Find("4").gameObject.SetActive(true);
-                levelDistiller.transform.Find("Flask3").gameObject.transform.Find("3").gameObject.SetActive(true);
+                levelDistiller.transform.Find("Flask3").gameObject.transform.Find("4").gameObject.SetActive(true);
 
                 TutorialText.text = "";
                 PopupUI.GetComponent<TutorialPopup>().OpenPopup("Turn off the heat source now that it is at 100 degress fahrenheit...\n\n(Warning: Running mixture under heat for too long (until dry) could create a safety hazard)");
