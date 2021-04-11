@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LabCompleted : MonoBehaviour
+public class LabFailed : MonoBehaviour
 {
     public GameObject CrosshairObj;
-    public static bool isCompleted;
+    public static bool isFailed;
 
-    public void Completed()
+    public void Failed()
     {
-        isCompleted = true;
+        isFailed = true;
         this.gameObject.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -18,9 +18,16 @@ public class LabCompleted : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    public void RetryButton()
+    {
+        isFailed = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("ChemLabTutorial");
+    }
+
     public void MenuButton()
     {
-        isCompleted = false;
+        isFailed = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
