@@ -28,7 +28,7 @@ public class ChemLabTutorial : MonoBehaviour
         if (Input.GetKeyDown("space")) {
             if (step == 0) {
                 step++;
-                PopupUI.GetComponent<TutorialPopup>().OpenPopup("In this tutorial you will learn how to...");
+                PopupUI.GetComponent<TutorialPopup>().OpenPopup("In this tutorial you will learn how\nto separate a mixture of two\nliquids using distillation.");
             }
             else if (step == 1) {
                 step++;
@@ -40,7 +40,7 @@ public class ChemLabTutorial : MonoBehaviour
                 TutorialText.text = "Begin by putting the mixture in the wide flask onto the stand directly above the heating source...";
             }
         }
-        
+
         if (isHeatOn) {
             if (heatTimer > 0)
             {
