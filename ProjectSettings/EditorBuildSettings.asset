@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChemLabTutorial.unity
     guid: 3800df845d9f744d79bf64ae813115bd
+  - enabled: 1
+    path: Assets/Scenes/BioLabTutorial.unity
+    guid: 8e8fce11799faa248bf2e208db9eb8ee
   m_configObjects: {}
