@@ -7,12 +7,12 @@ public class MainMenu : MonoBehaviour
 {
     public void BiologyButton()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("ChemLabTutorial");
     }
 
     public void ChemistryButton()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("ChemLabTutorial");
     }
 
     public void QuitButton()
