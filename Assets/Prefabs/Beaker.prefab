@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2573070737410332332}
   - component: {fileID: 2350438366268692811}
   m_Layer: 0
-  m_Name: F_Liquid_05
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4285945357301985406}
   - component: {fileID: 3579826542578960746}
   m_Layer: 0
-  m_Name: F_Liquid_01
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 1499880556457716322}
   - component: {fileID: 1668350705087435196}
   m_Layer: 0
-  m_Name: F_Liquid_03
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 2124939953747147259}
   - component: {fileID: 2483011044264148778}
   m_Layer: 0
-  m_Name: F_Liquid_04
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 1616525949553732438}
   - component: {fileID: 286323534268657632}
   m_Layer: 0
-  m_Name: F_Liquid_02
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

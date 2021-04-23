@@ -8,6 +8,6 @@ public class LiquidCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        levelScript.GetComponent<ChemLabTutorial>().CheckObject(col.gameObject);
+        levelScript.GetComponent<BioLabTutorial>().CheckObject(col.gameObject);
     }
 }

@@ -22,7 +22,7 @@ public class LabFailed : MonoBehaviour
     {
         isFailed = false;
         Time.timeScale = 1f;
-        SceneManager.LoadScene("ChemLabTutorial");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void MenuButton()
